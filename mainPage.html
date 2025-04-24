@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main Page</title>
+    <link rel="stylesheet" href="mainPage.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <i class="fa-solid fa-bars" id="bars"></i>
+      <div class="top">
+        <h4>Menu</h4>
+        <i class="fa-solid fa-xmark" id="cross"></i>
+      </div>
+      <div class="right"><h3 id="logOut">Logout</h3></div>
+    </header>
+
+    <div id="main">
+      <div class="sideBar">
+        <div class="bottom">
+          <button onclick="changeSrc('aiSupport1.html')">ChatBot (24*7)</button>
+          <p>search history-</p>
+        </div>
+      </div>
+      <iframe src="aiSupport1.html" class="contentBar" id="myiFrame"></iframe>
+    </div>
+
+    <script src="functions.js"></script>
+    <script>
+      // if a user does not login then he/she directed on login page i.e. index.html
+      checkLogin();
+
+      const cross = document.querySelector("#cross");
+      const sideBar = document.querySelector('.sideBar');
+      const bars = document.querySelector("#bars");
+      const t = document.querySelector('.top');
+      const logOut = document.querySelector('#logOut');
+      const myiFrame = document.querySelector('#myiFrame');
+
+      function changeSrc(currSrc){
+        myiFrame.src = currSrc;
+      }
+       
+      logOut.innerHTML = loginUsername + ` <i class="fa-solid fa-right-from-bracket"></i>`;
+
+      logOut.addEventListener('click', () => {
+        window.location.href = 'index.html';
+        localStorage.removeItem("loginId");
+      })
+
+      
+      
+      cross.addEventListener('click', () => {
+        sideBar.style.display = "none";
+        bars.style.display = "block";
+        t.style.display = 'none';
+      });
+       
+      bars.addEventListener('click', () => {
+        sideBar.style.display = "block";
+        t.style.display = 'flex';
+        bars.style.display = "none";
+      })
+    </script>
+  </body>
+</html>
